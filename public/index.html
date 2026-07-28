@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#060816">
+  <meta name="description" content="Space Invaders web con ranking online.">
+  <title>Neon Invaders</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="starfield" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">ARCADE // SECTOR 07</p>
+        <h1>NEON <span>INVADERS</span></h1>
+        <p class="subtitle">Defiende la órbita, encadena impactos y conquista el ranking.</p>
+      </div>
+      <div class="status-pill"><span></span> Servidor operativo</div>
+    </header>
+
+    <section class="game-layout">
+      <article class="game-card">
+        <div class="hud" aria-label="Marcadores de la partida">
+          <div><span>PUNTOS</span><strong id="scoreValue">000000</strong></div>
+          <div><span>RÉCORD</span><strong id="highScoreValue">000000</strong></div>
+          <div><span>OLEADA</span><strong id="waveValue">01</strong></div>
+          <div><span>VIDAS</span><strong id="livesValue">♥ ♥ ♥</strong></div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="gameCanvas" width="900" height="600" aria-label="Juego Space Invaders"></canvas>
+
+          <div class="game-overlay active" id="startOverlay">
+            <div class="overlay-panel">
+              <p class="eyebrow">MISIÓN DISPONIBLE</p>
+              <h2>La flota se aproxima</h2>
+              <p>Mueve la nave, destruye a los invasores y evita que alcancen la línea defensiva.</p>
+              <label for="playerName">Nombre de piloto</label>
+              <input id="playerName" maxlength="18" autocomplete="nickname" placeholder="Piloto">
+              <button id="startButton" class="primary-button">INICIAR MISIÓN</button>
+              <div class="controls-copy">
+                <span>← → / A D para moverte</span>
+                <span>Espacio para disparar</span>
+                <span>P para pausar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-overlay" id="pauseOverlay">
+            <div class="overlay-panel compact">
+              <p class="eyebrow">SISTEMA EN ESPERA</p>
+              <h2>Partida pausada</h2>
+              <p>Pulsa <strong>P</strong> para continuar.</p>
+            </div>
+          </div>
+
+          <div class="game-overlay" id="gameOverOverlay">
+            <div class="overlay-panel">
+              <p class="eyebrow">TRANSMISIÓN FINALIZADA</p>
+              <h2 id="gameOverTitle">Misión terminada</h2>
+              <p id="finalScoreText">Puntuación final: 0</p>
+              <button id="restartButton" class="primary-button">JUGAR DE NUEVO</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-controls" aria-label="Controles táctiles">
+          <button id="moveLeft" aria-label="Mover a la izquierda">◀</button>
+          <button id="shootButton" class="shoot" aria-label="Disparar">●</button>
+          <button id="moveRight" aria-label="Mover a la derecha">▶</button>
+        </div>
+      </article>
+
+      <aside class="side-panel">
+        <section class="panel-card ranking-card">
+          <div class="panel-title-row">
+            <div>
+              <p class="eyebrow">CLASIFICACIÓN</p>
+              <h2>Mejores pilotos</h2>
+            </div>
+            <button id="refreshRanking" class="icon-button" aria-label="Actualizar ranking">↻</button>
+          </div>
+          <ol id="rankingList" class="ranking-list">
+            <li class="ranking-empty">Cargando señales...</li>
+          </ol>
+        </section>
+
+        <section class="panel-card mission-card">
+          <p class="eyebrow">MANUAL DE VUELO</p>
+          <h2>Consejos tácticos</h2>
+          <ul>
+            <li>No dispares sin parar: busca columnas completas.</li>
+            <li>Los invasores aceleran cuando quedan pocos.</li>
+            <li>Cada nueva oleada aumenta la velocidad enemiga.</li>
+            <li>Obtienes una vida extra cada 10.000 puntos.</li>
+          </ul>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/game.js" defer></script>
+</body>
+</html>

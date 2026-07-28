@@ -1,0 +1,18 @@
+{
+  "name": "space-invaders-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Space Invaders con frontend Canvas y backend Node.js sin dependencias externas",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check public/game.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0"
+  }
+}
